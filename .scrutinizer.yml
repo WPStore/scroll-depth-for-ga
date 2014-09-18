@@ -36,9 +36,9 @@ tools:
     # External Code Coverage (https://scrutinizer-ci.com/docs/tools/external-code-coverage/)
     # external_code_coverage: true
 
-checks:
-    php:
-        newline_at_end_of_file: true
-        prefer_unix_line_ending: true
-        avoid_closing_tag: true
-        no_trailing_whitespace: true
+#checks:
+#    php:
+#        newline_at_end_of_file: true
+#        prefer_unix_line_ending: true
+#        avoid_closing_tag: true
+#        no_trailing_whitespace: true
