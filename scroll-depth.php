@@ -43,39 +43,63 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 require 'libs/autoload.php';
 
 /**
- * @todo
- *
  * @since 0.0.1
  */
 class ScrollDepth {
 
+	/**
+	 * Current version of the plugin.
+	 *
+	 * @since 0.0.1
+	 * @var string
+	 */
 	public $version = '0.0.1';
 
+	/**
+	 * Main File of the plugin.
+	 *
+	 * @since 0.0.1
+	 * @var string
+	 */
 	public $file = __FILE__;
 
-
+	/**
+	 * Holds a copy of the object for easy reference.
+	 *
+	 * @since 0.0.1
+	 * @static
+	 * @var object $_instance
+	 */
 	protected static $_instance = null;
 
-	public static function instance() {
+	/**
+	 * Main ScrollDepth Instance
+	 *
+	 * Ensures only one instance of the class is loaded or can be loaded.
+	 *
+	 * @since  0.0.1
+	 * @static
+	 * @return object Instance
+	 */
+	public static function get_instance() {
+
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
+
 	} // END instance()
 
 	/**
 	 * Constructor. Hooks all interactions to initialize the class.
 	 *
-	 * @since 0.0.1
-	 *
+	 * @since  0.0.1
 	 * @return void
 	 */
 	public function __construct() {
 
 		register_activation_hook( __FILE__, array( '\\WPStore\\ScrollDepth', 'activation' ) );
-
-		// Initiate classes for all requests
-//		new \WPStore\WebAnalytics\Init();
 
 		// Frontend
 		if ( ! is_admin() ) {
@@ -85,14 +109,7 @@ class ScrollDepth {
 		// WP-Admin
 		if ( is_admin() ) {
 
-//			new \WPStore\ScrollDepth\Admin();
-
-		} // END if
-
-		// WP-Admin/Network
-		if ( is_network_admin() ) {
-
-//			new \WPStore\ScrollDepth\Network();
+			new \WPStore\ScrollDepth\Admin();
 
 		} // END if
 
@@ -102,7 +119,7 @@ class ScrollDepth {
 	/** Helper functions ******************************************************/
 
 	/**
-	 * Get the plugin path.
+	 * Get the plugin version.
 	 *
 	 * @since  0.0.1
 	 * @return string
@@ -111,26 +128,56 @@ class ScrollDepth {
 		return $this->version;
 	}
 
+	/**
+	 * Get the main plugin file.
+	 *
+	 * @since  0.0.1
+	 * @return string
+	 */
 	public function get_file() {
 		return $this->file;
 	}
 
+	/**
+	 * Pre-Activation checks
+	 *
+	 * Checks if Google Analyticator is present otherwise prevents activation
+	 *
+	 * @since  0.0.1
+	 * @param  bool $network_wide
+	 * @return void
+	 */
 	public function activation( $network_wide ) {
-		
-//		if ( ! class_exists( '\\WPStore\\ScrollDepth\\Activation' ) ) {
-//			require_once( dirname( __FILE__ ) . 'ScrollDepth/Activation.php' );
-//		}
 
-		$activate = new \WPStore\ScrollDepth\Activation( __FILE__ );
-		$activate->check_parent_plugin( 'class', '\\WPStore\\WebAnalytics' );
+		$parent = 'google-analyticator/google-analyticator.php';
 
-	}
+		if ( $network_wide && ! is_plugin_active_for_network( $parent ) ) {
+
+			// More verbose error message
+			wp_die( __( 'Google Analyticator needs to be activate network-wide to allow this extension to be activated network-wide too!', 'scroll-depth' ) );
+
+		}
+
+		if ( is_plugin_inactive( $parent ) ) { // safe enough?
+//		if ( ! class_exists( 'Google_Analyticator' ) ) {
+
+			// More verbose error message
+			wp_die( __( 'Requirements are not met! Download and activate Google Analyticator to use this plugin.', 'scroll-depth' ) );
+
+		}
+
+	} // END activation()
 
 } // END class
 
-
+/**
+ * Returns the main instance
+ *
+ * @since  0.0.1
+ * @return object ScrollDepth Instance
+ */
 function ScrollDepth() {
-	return \WPStore\ScrollDepth::instance();
+	return \WPStore\ScrollDepth::get_instance();
 }
 
 ScrollDepth();

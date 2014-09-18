@@ -3,7 +3,7 @@
  * @author    WPStore.io <code@wpstore.io>
  * @copyright Copyright (c) 2014, WPStore.io
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0+
- * @package   WPStore\WebAnalytics
+ * @package   WPStore\ScrollDepth
  */
 
 namespace WPStore\ScrollDepth;
@@ -12,19 +12,29 @@ namespace WPStore\ScrollDepth;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
- * @todo
- *
  * @since 0.0.1
  */
 class Frontend {
 
+	/**
+	 * Constructor. Hooks all interactions to initialize the class.
+	 * 
+	 * @since  0.0.1
+	 * @return void
+	 */
 	public function __construct() {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-//		add_action( 'wp_head', array( $this, 'output_parameters' ) );
+//		add_action( 'wp_head', array( $this, 'output_parameters' ) ); // OR hook into a custom action?
 
 	} // END __construct()
 
+	/**
+	 * Load the jquery-scrolldepth library on all frontend pages
+	 *
+	 * @since 0.0.1
+	 * @return void
+	 */
 	public function enqueue_scripts() {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -32,6 +42,12 @@ class Frontend {
 
 	} // END enqueue_scripts()
 
+	/**
+	 * Generated the javascript code controlling the library
+	 *
+	 * @since  0.0.1
+	 * @return string
+	 */
 	public function output_parameters() {
 
 		// global $wp_scroll_depth_vals;
@@ -58,4 +74,4 @@ class Frontend {
 
 	} // END output_parameters()
 
-} // END class
+} // END class Frontend
