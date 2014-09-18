@@ -1,6 +1,7 @@
 # Scroll Depth for Google Analyticator
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/WPStore/scroll-depth-for-ga/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/WPStore/scroll-depth-for-ga/?branch=master)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![GPL-2.0+](http://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 
 Requires Google Analyticator >= 7.0.0 (not released yet!!)
 
