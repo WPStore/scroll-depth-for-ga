@@ -16,7 +16,8 @@ module.exports = function (grunt) {
 					destPrefix: 'assets'
 				},
 				files: {
-					'jquery-scrolldepth': 'jquery-scrolldepth/*.js'
+					'jquery-scrolldepth': 'jquery-scrolldepth/*.js',
+					'jquery-scrolldepth/readme.md': 'jquery-scrolldepth/readme.md'
 				}
 			}
 		}
