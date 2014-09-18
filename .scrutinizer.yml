@@ -1,9 +1,7 @@
 # Scruitinizer WordPress PLugin Profile
 # Profile: WP-Plugins_0.9
 filter:
-    excluded_paths:
-        - 'libs/*'
-        - 'assets/jquery-scrolldepth/*'
+    excluded_paths: [libs/*, assets/jquery-scrolldepth/*]
 tools:
     # Runs the JSHint static analysis tool (https://scrutinizer-ci.com/docs/tools/javascript/jshint/)
     js_hint: true
