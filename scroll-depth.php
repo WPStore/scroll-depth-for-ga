@@ -108,9 +108,7 @@ class ScrollDepth {
 
 		// WP-Admin
 		if ( is_admin() ) {
-
 			new \WPStore\ScrollDepth\Admin();
-
 		} // END if
 
 	} // END __construct()
@@ -158,8 +156,7 @@ class ScrollDepth {
 
 		}
 
-		if ( is_plugin_inactive( $parent ) ) { // safe enough?
-//		if ( ! class_exists( 'Google_Analyticator' ) ) {
+		if ( is_plugin_inactive( $parent ) ) { // safe enough? // if ( ! class_exists( 'Google_Analyticator' ) ) {
 
 			// More verbose error message
 			wp_die( __( 'Requirements are not met! Download and activate Google Analyticator to use this plugin.', 'scroll-depth' ) );
