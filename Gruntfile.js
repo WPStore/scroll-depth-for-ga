@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 			},
 			libs: {
 				options: {
-					destPrefix: 'libs'
+					destPrefix: 'assets'
 				},
 				files: {
 					'jquery-scrolldepth': 'jquery-scrolldepth/*.js'
