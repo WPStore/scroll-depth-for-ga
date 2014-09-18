@@ -6,7 +6,23 @@ filter:
         - assets/jquery-scrolldepth/*
 tools:
     # Runs the JSHint static analysis tool (https://scrutinizer-ci.com/docs/tools/javascript/jshint/)
-    js_hint: true
+    js_hint:
+        config:
+            boss: true
+            curly: true
+            eqeqeq: true
+            eqnull: true
+            es3: true
+            expr: true
+            immed: true
+            noarg: true
+            onevar: true
+            quotmark: single
+            trailing: true
+            undef: true
+            unused: true
+            browser: true
+            globals: { _: false, Backbone: false, jQuery: false, wp: false }
 
     # Runs PHP Code Sniffer
     php_code_sniffer:
