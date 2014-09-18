@@ -1,0 +1,28 @@
+{
+  "name": "wpstore/scroll-depth",
+  "description": "@todo",
+  "version": "0.0.1",
+  "type": "project",
+  "homepage": "https://www.wpstore.io/plugins/scroll-depth/",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name" : "WPStore.io",
+      "email" : "code@wpstore.io",
+      "homepage" : "https://www.wpstore.io"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/WPStore/scroll-depth/issues"
+  },
+  "require": {},
+  "autoload": {
+    "psr-4": {
+        "WPStore\\ScrollDepth\\": "ScrollDepth/"
+    }
+  },
+  "config": {
+    "vendor-dir": "libs",
+    "autoloader-suffix": "WPStoreScrollDepth"
+  }
+}
