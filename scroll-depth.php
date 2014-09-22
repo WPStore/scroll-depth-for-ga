@@ -141,6 +141,8 @@ class ScrollDepth {
 	 *
 	 * Checks if Google Analyticator is present otherwise prevents activation
 	 *
+	 * @todo check for GA version >= 7.0.0
+	 *
 	 * @since  0.0.1
 	 * @param  bool $network_wide
 	 * @return void
@@ -149,17 +151,23 @@ class ScrollDepth {
 
 		$parent = 'google-analyticator/google-analyticator.php';
 
-		if ( $network_wide && ! is_plugin_active_for_network( $parent ) ) {
+		if ( is_multisite() && $network_wide ) {
 
-			// More verbose error message
-			wp_die( __( 'Google Analyticator needs to be activate network-wide to allow this extension to be activated network-wide too!', 'scroll-depth' ) );
+			if ( ! is_plugin_active_for_network( $parent ) ) {
 
-		}
+				// More verbose error message
+				wp_die( __( 'Google Analyticator needs to be activate network-wide to allow this extension to be activated network-wide too!', 'scroll-depth' ) );
 
-		if ( is_plugin_inactive( $parent ) ) { // safe enough? // if ( ! class_exists( 'Google_Analyticator' ) ) {
+			}
 
-			// More verbose error message
-			wp_die( __( 'Requirements are not met! Download and activate Google Analyticator to use this plugin.', 'scroll-depth' ) );
+		} else {
+
+			if ( is_plugin_inactive( $parent ) ) { // safe enough? // if ( ! class_exists( 'Google_Analyticator' ) ) {
+
+				// More verbose error message
+				wp_die( __( 'Requirements are not met! Download and activate Google Analyticator to use this plugin.', 'scroll-depth' ) );
+
+			}
 
 		}
 
